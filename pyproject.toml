@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "django_ex"
+version = "0.1.0"
+description = ""
+authors = ["ngocbd <ngocbd@rikkeisoft.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.0.5"
+psycopg2 = "^2.9.3"
+django-livereload-server = "^0.4"
+yapf = "^0.32.0"
+python-decouple = "^3.6"
+pylint = "^2.14.4"
+gunicorn = "^20.1.0"
+djangorestframework = "^3.13.1"
+autopep8 = "^1.6.0"
+black = "^22.6.0"
+flake8 = "^4.0.1"
+Markdown = "^3.3.7"
+django-filter = "^22.1"
+Pygments = "^2.12.0"
+djangorestframework-simplejwt = "^5.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
