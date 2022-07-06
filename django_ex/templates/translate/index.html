@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+	<div class="row">
+        <div class="col">
+            <form style="margin-top:65px">
+                <div class="form-group">
+                    <label for="detectInput">Nhập</label>
+                    <textarea class="form-control" id="detectInput" rows="20" ></textarea>
+                        <p>
+                        Word Count:
+                            <span id="show">0</span>
+                        </p>
+                </div>
+            </form>
+            <div style="margin-top: 20px;float: right;">
+                <button onclick="transLate()" type="button" class="btn btn-primary btn-lg">Dịch</button>
+            </div>
+        </div>
+		<div class="col">
+            <span>Chọn ngôn ngữ dịch: </span>
+			<select class="form-select" name="languages" id="languages">
+				{% for lang in languages %}
+				    <option value="{{lang.language}}" 
+                    {% if lang.language == 'en' %}
+                        selected
+                    {% endif %}
+                        >{{lang.name}}</option>
+				{% endfor %}
+			</select>
+             <form>
+                <div class="form-group">
+                    <label for="detectOutput">Dịch</label>
+                    <textarea class="form-control" id="detectOutput" rows="20"></textarea>
+                     <p>
+                        Word Count:
+                            <span id="show1">0</span>
+                        </p>
+                </div>
+            </form>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+    function transLate() {
+        var target_language_code = $('#languages').val();
+        var text = $('#detectInput').val();
+        $.ajax({
+            url: '{% url 'translate:translate' %}',
+            type: 'GET',
+            data: {
+                'target_language_code': target_language_code,
+                'text': text
+            },
+            success: function(data) {
+                $('#detectOutput').val(data['translated_text']);
+                if (data['error']){
+                    alert(data['error']);
+                }
+            },
+            error: function(err) {
+                alert('error');
+                console.log(err);
+            }
+        });
+    }
+
+    document
+        .querySelector("#detectInput")
+        .addEventListener("input", function countWord() {
+          let res = [];
+          let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+          str.map((s) => {
+            let trimStr = s.trim();
+            if (trimStr.length > 0) {
+              res.push(trimStr);
+            }
+          });
+          document.querySelector("#show").innerText = res.length;
+        });
+    document
+        .querySelector("#detectOutput")
+        .addEventListener("input", function countWord() {
+          let res = [];
+          let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+          str.map((s) => {
+            let trimStr = s.trim();
+            if (trimStr.length > 0) {
+              res.push(trimStr);
+            }
+          });
+          document.querySelector("#show1").innerText = res.length;
+        });
+
+</script>
+
+{% endblock content %}

@@ -4,10 +4,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from .serializers import RegisterSerializer
 from rest_framework import generics
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -22,6 +22,7 @@ class RegisterView(generics.CreateAPIView):
 
 
 class ExampleView(APIView):
+    authentication_classes = (JWTAuthentication, )
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):

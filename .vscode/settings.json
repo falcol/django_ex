@@ -5,19 +5,4 @@
     "python.linting.lintOnSave": true,
     "python.formatting.provider": "yapf", // or "black" here
     "python.formatting.yapfPath": "yapf",
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.renderWhitespace": "trailing",
-    "pythonIndent.trimLinesWithOnlyWhitespace": true,
-    "pythonIndent.keepHangingBracketOnLine": true,
-    "pythonIndent.useTabOnHangingIndent": true,
-    "python.linting.pylintPath": "pylint",
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.python",
-        "editor.formatOnSave": true
-    },
-    "python.linting.pylintArgs": [
-        "--disable=C0111", // missing docstring
-        "--load-plugins=pylint_celery"
-    ],
 }

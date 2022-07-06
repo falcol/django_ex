@@ -23,4 +23,6 @@ urlpatterns = [
     path('snippets/', include('snippets.urls')),
     path('users/', include('users.urls')),
     path('auth/', include('auththen.urls')),
+    path('translate/', include('translate.urls')),
+    # path('oauth2/', include('django_auth_adfs.urls')),
 ]

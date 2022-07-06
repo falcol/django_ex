@@ -30,11 +30,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig', 'django.contrib.admin', 'django.contrib.auth',
-    'django.contrib.contenttypes', 'django.contrib.sessions',
-    'django.contrib.messages', 'livereload', 'django.contrib.staticfiles',
-    'rest_framework', 'car.apps.CarConfig', 'snippets',
-    'rest_framework.authtoken', 'django_filters', 'users', 'auththen'
+    'polls.apps.PollsConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'livereload',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'car.apps.CarConfig',
+    'snippets',
+    'rest_framework.authtoken',
+    'django_filters',
+    'users',
+    'auththen',
+    'translate',
+    # 'django_auth_adfs',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'livereload.middleware.LiveReloadScript',
+    # 'django_auth_adfs.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'django_ex.urls'
@@ -138,9 +151,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
 }
 
 from datetime import timedelta
@@ -167,3 +180,26 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+# AUTHENTICATION_BACKENDS = [
+#     'django_auth_adfs.backend.AdfsAccessTokenBackend',
+# ]
+# LOGIN_URL = "django_auth_adfs:login"
+# LOGIN_REDIRECT_URL = "/translate"
+# CUSTOM_FAILED_RESPONSE_VIEW = 'dot.path.to.custom.views.login_failed'
+
+# AUTH_ADFS = {
+#     'AUDIENCE': config('CLIENT_ID'),
+#     'CLIENT_ID': config('CLIENT_ID'),
+#     'CLIENT_SECRET': config('CLIENT_SECRET'),
+#     'CLAIM_MAPPING': {
+#         'first_name': 'given_name',
+#         'last_name': 'family_name',
+#         'email': 'upn'
+#     },
+#     'GROUPS_CLAIM': 'roles',
+#     'MIRROR_GROUPS': True,
+#     'USERNAME_CLAIM': 'upn',
+#     'TENANT_ID': config('TENANT_ID'),
+#     'RELYING_PARTY_ID': config('CLIENT_ID'),
+# }
